@@ -1,0 +1,19 @@
+spin_manifest_version = 2
+
+[application]
+authors = ["nico"]
+description = "Remote MCP server — Fermyon Cloud"
+name = "remote-mcp-server-fermyon"
+version = "1.0.0"
+
+[[trigger.http]]
+route = "/..."
+component = "mcp"
+
+[component.mcp]
+source = "dist/mcp.wasm"
+exclude_files = ["**/node_modules"]
+allowed_outbound_hosts = []
+[component.mcp.build]
+command = ["npm install", "npm run build"]
+watch = ["src/**/*.js"]

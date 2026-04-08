@@ -1,0 +1,19 @@
+{
+  "name": "remote-mcp-server-fermyon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.mjs && mkdirp dist && j2w -i build/bundle.js --initLocation http://mcp.localhost -o dist/mcp.wasm",
+    "build:debug": "node build.mjs && mkdirp dist && j2w -d -i build/bundle.js --initLocation http://mcp.localhost -o dist/mcp.wasm"
+  },
+  "devDependencies": {
+    "mkdirp": "^3.0.1",
+    "esbuild": "^0.25.8"
+  },
+  "dependencies": {
+    "itty-router": "^5.0.18",
+    "@spinframework/build-tools": "^1.0.4",
+    "@spinframework/wasi-http-proxy": "^1.0.0"
+  }
+}

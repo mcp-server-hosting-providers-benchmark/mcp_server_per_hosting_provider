@@ -1,0 +1,16 @@
+{
+  "name": "remote_mcp_server_cloudflare_workers",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
