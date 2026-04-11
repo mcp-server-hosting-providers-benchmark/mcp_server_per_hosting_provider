@@ -23,9 +23,9 @@
           "description": "Component entry has a non-empty data_url field"
         },
         {
-          "id": "endpoints_json_accessible",
-          "description": "endpoints.json is publicly accessible from the component repo",
-          "url": "https://raw.githubusercontent.com/NK5NK5/remote_mcp_server_per_hosting_provider/main/endpoints.json"
+          "id": "mcp_servers_under_test_accessible",
+          "description": "mcp_servers_under_test.json is publicly accessible from the registry",
+          "url": "https://raw.githubusercontent.com/NK5NK5/remote_mcp_hosting_provider_benchmark_pipeline_registry/main/mcp_servers_under_test.json"
         }
       ]
     },
@@ -35,12 +35,12 @@
       "description": "Is the component fully defined?",
       "checks": [
         {
-          "id": "endpoints_json_valid",
-          "description": "endpoints.json is valid JSON"
+          "id": "mcp_servers_under_test_valid",
+          "description": "mcp_servers_under_test.json is valid JSON"
         },
         {
-          "id": "endpoints_count_expected",
-          "description": "endpoints.json contains exactly 8 entries",
+          "id": "mcp_servers_count_expected",
+          "description": "mcp_servers_under_test.json contains exactly 8 entries",
           "expected_count": 8
         },
         {

@@ -18,6 +18,7 @@ const CONTRACT = JSON.parse(
   fs.readFileSync(path.join(__dirname, "component_verification_contract.json"), "utf8")
 );
 
+const MCP_SERVERS_URL = "https://raw.githubusercontent.com/NK5NK5/remote_mcp_hosting_provider_benchmark_pipeline_registry/main/mcp_servers_under_test.json";
 const WORKTREE_DIR = path.join(__dirname, ".verify_tmp");
 
 // --- helpers ----------------------------------------------------------------
@@ -99,11 +100,11 @@ function checkDiscoverability() {
     results.push(fail("registry_has_data_url", "data_url field missing or empty"));
   }
 
-  // endpoints_json_accessible
+  // mcp_servers_under_test_accessible
   const ok = httpOk(CONTRACT.levels[0].checks[3].url);
   results.push(ok
-    ? pass("endpoints_json_accessible")
-    : fail("endpoints_json_accessible", "URL not accessible"));
+    ? pass("mcp_servers_under_test_accessible")
+    : fail("mcp_servers_under_test_accessible", "mcp_servers_under_test.json not accessible in registry"));
 
   return results;
 }
@@ -114,24 +115,24 @@ function checkCompleteness() {
   const results = [];
   let endpoints = null;
 
-  // endpoints_json_valid
+  // mcp_servers_under_test_valid
   try {
-    endpoints = fetchJson(CONTRACT.levels[0].checks[3].url);
-    results.push(pass("endpoints_json_valid"));
+    endpoints = fetchJson(MCP_SERVERS_URL);
+    results.push(pass("mcp_servers_under_test_valid"));
   } catch {
-    results.push(fail("endpoints_json_valid", "not valid JSON"));
-    results.push(fail("endpoints_count_expected", "skipped — endpoints.json not readable"));
+    results.push(fail("mcp_servers_under_test_valid", "not valid JSON or not accessible"));
+    results.push(fail("mcp_servers_count_expected", "skipped — mcp_servers_under_test.json not readable"));
     results.push(fail("verify_script_present", "skipped"));
     return { results, endpoints: null };
   }
 
-  // endpoints_count_expected
+  // mcp_servers_count_expected
   const expected = CONTRACT.levels[1].checks[1].expected_count;
   const entries = Object.keys(endpoints).filter((k) => !k.startsWith("_"));
   if (entries.length === expected) {
-    results.push(pass("endpoints_count_expected"));
+    results.push(pass("mcp_servers_count_expected"));
   } else {
-    results.push(fail("endpoints_count_expected", `expected ${expected}, got ${entries.length}`));
+    results.push(fail("mcp_servers_count_expected", `expected ${expected}, got ${entries.length}`));
   }
 
   // verify_script_present
