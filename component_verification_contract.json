@@ -1,5 +1,5 @@
 {
-  "component": "remote_mcp_server_per_hosting_provider",
+  "component": "mcp_server_per_hosting_provider",
   "verify_script": "node verify.js",
   "report_output": "data branch — verify_report_TIMESTAMP.json",
   "result_states": ["pass", "fail"],
