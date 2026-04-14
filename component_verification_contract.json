@@ -1,6 +1,8 @@
 {
   "component": "mcp_server_per_hosting_provider",
   "verify_script": "node verify.js",
+  "verify_schedule": "once a day at 3h UTC",
+  "verify_schedule_reason": "Each verify call hits all 8 endpoints (tools/list + tools/call), which warms them up. Running more frequently would prevent cold-start conditions that the benchmark is designed to measure.",
   "report_output": "data branch — verify_report_TIMESTAMP.json",
   "result_states": ["pass", "fail"],
   "levels": [
