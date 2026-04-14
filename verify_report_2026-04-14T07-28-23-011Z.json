@@ -1,0 +1,46 @@
+{
+  "component": "mcp_server_per_hosting_provider",
+  "verified_at": "2026-04-14T07:28:22.849Z",
+  "summary": {
+    "pass": 0,
+    "fail": 7,
+    "total": 7
+  },
+  "checks": [
+    {
+      "id": "registry_accessible",
+      "status": "fail",
+      "reason": "HTTP request failed or invalid JSON"
+    },
+    {
+      "id": "registry_has_component_entry",
+      "status": "fail",
+      "reason": "skipped — registry not accessible"
+    },
+    {
+      "id": "registry_has_data_url",
+      "status": "fail",
+      "reason": "skipped — registry not accessible"
+    },
+    {
+      "id": "endpoints_json_accessible",
+      "status": "fail",
+      "reason": "skipped — registry not accessible"
+    },
+    {
+      "id": "mcp_servers_under_test_valid",
+      "status": "fail",
+      "reason": "not valid JSON or not accessible"
+    },
+    {
+      "id": "mcp_servers_count_expected",
+      "status": "fail",
+      "reason": "skipped — mcp_servers_under_test.json not readable"
+    },
+    {
+      "id": "verify_script_present",
+      "status": "fail",
+      "reason": "skipped"
+    }
+  ]
+}
