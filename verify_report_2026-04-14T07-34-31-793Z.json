@@ -1,0 +1,199 @@
+{
+  "component": "mcp_server_per_hosting_provider",
+  "verified_at": "2026-04-14T07:34:30.874Z",
+  "summary": {
+    "pass": 47,
+    "fail": 0,
+    "total": 47
+  },
+  "checks": [
+    {
+      "id": "registry_accessible",
+      "status": "pass"
+    },
+    {
+      "id": "registry_has_component_entry",
+      "status": "pass"
+    },
+    {
+      "id": "registry_has_data_url",
+      "status": "pass"
+    },
+    {
+      "id": "mcp_servers_under_test_accessible",
+      "status": "pass"
+    },
+    {
+      "id": "mcp_servers_under_test_valid",
+      "status": "pass"
+    },
+    {
+      "id": "mcp_servers_count_expected",
+      "status": "pass"
+    },
+    {
+      "id": "verify_script_present",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_cloudflare_workers",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_vercel",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_netlify",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_railway",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_supabase_edge_functions",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_fermyon",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_valtown",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_responds_render",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_cloudflare_workers",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_cloudflare_workers",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_vercel",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_vercel",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_netlify",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_netlify",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_railway",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_railway",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_supabase_edge_functions",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_supabase_edge_functions",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_fermyon",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_fermyon",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_valtown",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_valtown",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_count_render",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_tools_name_render",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_cloudflare_workers",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_cloudflare_workers",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_vercel",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_vercel",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_netlify",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_netlify",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_railway",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_railway",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_supabase_edge_functions",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_supabase_edge_functions",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_fermyon",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_fermyon",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_valtown",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_valtown",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_responds_render",
+      "status": "pass"
+    },
+    {
+      "id": "endpoint_call_fields_render",
+      "status": "pass"
+    }
+  ]
+}
