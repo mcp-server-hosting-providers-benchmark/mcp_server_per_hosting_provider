@@ -142,8 +142,13 @@ function checkCompleteness(entry) {
     return { results, endpoints: null };
   }
 
+  // contract_has_output_url
+  results.push(COMPONENT_CONTRACT.output_url
+    ? pass("contract_has_output_url")
+    : fail("contract_has_output_url", "output_url field missing or empty in component_contract.json"));
+
   // mcp_servers_count_expected
-  const expected = CONTRACT.levels[1].checks[1].expected_count;
+  const expected = CONTRACT.levels[1].checks[2].expected_count;
   const entries = Object.keys(endpoints).filter((k) => !k.startsWith("_"));
   if (entries.length === expected) {
     results.push(pass("mcp_servers_count_expected"));
@@ -152,7 +157,7 @@ function checkCompleteness(entry) {
   }
 
   // verify_script_present
-  const verifyOk = httpOk(CONTRACT.levels[1].checks[2].url);
+  const verifyOk = httpOk(CONTRACT.levels[1].checks[3].url);
   results.push(verifyOk
     ? pass("verify_script_present")
     : fail("verify_script_present", "verify.js not accessible on GitHub"));

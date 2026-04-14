@@ -41,6 +41,10 @@
       "description": "Is the component fully defined?",
       "checks": [
         {
+          "id": "contract_has_output_url",
+          "description": "component_contract.json has a non-empty output_url field"
+        },
+        {
           "id": "mcp_servers_under_test_valid",
           "description": "mcp_servers_under_test.json is valid JSON"
         },
