@@ -12,11 +12,11 @@
         {
           "id": "registry_accessible",
           "description": "Public registry responds with HTTP 200",
-          "url": "https://raw.githubusercontent.com/NK5NK5/remote_mcp_hosting_provider_benchmark_pipeline_registry/main/pipeline_components.json"
+          "url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json"
         },
         {
           "id": "registry_has_component_entry",
-          "description": "Registry contains an entry with name = remote_mcp_server_per_hosting_provider"
+          "description": "Registry contains an entry with name = mcp_server_per_hosting_provider"
         },
         {
           "id": "registry_has_data_url",
@@ -25,7 +25,7 @@
         {
           "id": "mcp_servers_under_test_accessible",
           "description": "mcp_servers_under_test.json is publicly accessible from the registry",
-          "url": "https://raw.githubusercontent.com/NK5NK5/remote_mcp_hosting_provider_benchmark_pipeline_registry/main/mcp_servers_under_test.json"
+          "url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/mcp_servers_under_test.json"
         }
       ]
     },
@@ -46,7 +46,7 @@
         {
           "id": "verify_script_present",
           "description": "verify.js is present in the repo",
-          "url": "https://raw.githubusercontent.com/NK5NK5/remote_mcp_server_per_hosting_provider/main/verify.js"
+          "url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/main/verify.js"
         }
       ]
     },
