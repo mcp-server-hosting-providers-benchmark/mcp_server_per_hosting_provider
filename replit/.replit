@@ -1,0 +1,9 @@
+run = "npm start"
+entrypoint = "index.js"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "npm start"]
+deploymentTarget = "autoscale"

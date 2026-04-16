@@ -1,0 +1,26 @@
+{
+  "name": "remote-mcp-server-alpic",
+  "version": "0.0.1",
+  "private": true,
+  "description": "MCP server for the hosting provider latency benchmark, deployed on Alpic",
+  "type": "module",
+  "scripts": {
+    "dev": "skybridge dev",
+    "build": "skybridge build",
+    "start": "skybridge start",
+    "deploy": "alpic deploy"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "skybridge": ">=0.35.14 <1.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "alpic": "^1.104.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  },
+  "engines": {
+    "node": ">=24.14.1"
+  }
+}
