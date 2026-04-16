@@ -134,15 +134,21 @@
     },
     {
       "name": "Google Cloud Run",
-      "benchmark_status": "pending",
-      "credit_card_required": "unknown",
+      "benchmark_status": "excluded",
+      "exclusion_reason": "Used as the pinger platform for the benchmark. A provider cannot play both roles (pinger and benchmarked MCP server) — doing so would produce artificially low latency due to potential internal Google network routing. Google Cloud Run was chosen as the pinger platform because it is the only free, permanent solution covering all 7 required geographic regions including the Middle East.",
+      "role_in_project": "pinger_platform",
+      "credit_card_required": "yes — Google requires a credit card to create a GCP billing account, even for the free tier. However, no charges are incurred as long as usage stays within the free tier limits.",
       "agent_native_deployment": "yes",
       "deployment_cli": "gcloud",
-      "free_tier_type": "unknown",
-      "free_tier_limit": "unknown",
-      "agent_native_score": "unknown — to be verified",
-      "sources": [],
-      "notes": "gcloud CLI not installed on the deployment machine. To be deployed manually or after CLI installation."
+      "free_tier_type": "permanent",
+      "free_tier_limit": "2 million requests per month, 360,000 GiB-seconds RAM, 180,000 vCPU-seconds — shared across all regions within the same billing account. Resets monthly.",
+      "available_regions": ["Taiwan", "Tokyo", "Osaka", "Mumbai", "Bangkok", "Finland", "Stockholm", "Madrid", "Belgium", "Netherlands", "Milan", "Paris", "Tel Aviv", "Mexico", "Iowa", "South Carolina", "Northern Virginia", "Columbus", "Dallas", "Oregon", "Johannesburg", "Hong Kong", "Seoul", "Singapore", "Jakarta", "Delhi", "Sydney", "Melbourne", "Warsaw", "Berlin", "Turin", "London", "Frankfurt", "Zurich", "Doha", "Dammam", "Montreal", "Toronto", "São Paulo", "Santiago", "Los Angeles", "Salt Lake City", "Las Vegas"],
+      "agent_native_score": "excellent for pinger use — permanent free tier, full CLI deployment via gcloud, 44 regions covering all 7 required continents including Middle East",
+      "sources": [
+        { "url": "https://cloud.google.com/run/pricing", "checked_on": "2026-04-16", "content": "Free tier: 2M requests/month, 360,000 GiB-seconds RAM, 180,000 vCPU-seconds. Shared across all regions within a billing account. No time limit." },
+        { "url": "https://docs.cloud.google.com/run/docs/locations", "checked_on": "2026-04-16", "content": "44 available regions across all continents including Middle East (Tel Aviv, Doha, Dammam)" }
+      ],
+      "notes": "Even though a credit card is required to create a GCP account, the free tier is permanent and generous enough to run multiple pingers across all regions without incurring costs. Estimated usage: ~47,000 requests/month for 10 pingers checking 13 providers every 2 hours — well within the 2M free monthly limit."
     },
     {
       "name": "Azure Container Apps",
