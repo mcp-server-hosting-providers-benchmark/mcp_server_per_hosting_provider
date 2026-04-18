@@ -1,6 +1,6 @@
 {
   "description": "Non-latency metadata for every hosting provider evaluated in the MCP server latency benchmark. Covers providers that are in the benchmark, providers not yet added, and providers explicitly excluded. Updated manually as new providers are evaluated.",
-  "as_of": "2026-04-16",
+  "as_of": "2026-04-19",
   "criteria_explained": {
     "sources": "List of URLs where the information about this provider was found. Each entry includes the URL, the date it was consulted (checked_on), and a short description of what was found there. The checked_on date allows readers to verify whether the information has changed since it was recorded.",
     "benchmark_status": "Whether this provider is currently measured in the benchmark ('in_benchmark'), evaluated but not yet deployed ('pending'), or excluded with a reason ('excluded').",
@@ -212,7 +212,7 @@
         { "url": "https://cloud.google.com/run/pricing", "checked_on": "2026-04-16", "content": "Free tier: 2M requests/month, 360,000 GiB-seconds RAM, 180,000 vCPU-seconds. Shared across all regions within a billing account. No time limit." },
         { "url": "https://docs.cloud.google.com/run/docs/locations", "checked_on": "2026-04-16", "content": "44 available regions across all continents including Middle East (Tel Aviv, Doha, Dammam)" }
       ],
-      "notes": "Even though a credit card is required to create a GCP account, the free tier is permanent and generous enough to run multiple pingers across all regions without incurring costs. Estimated usage: ~47,000 requests/month for 10 pingers checking 13 providers every 2 hours — well within the 2M free monthly limit."
+      "notes": "Even though a credit card is required to create a GCP account, the free tier is permanent and generous enough to run multiple pingers across all regions without incurring costs. Estimated usage: ~12,000 requests/month for 12 pingers checking 8 providers every 6 hours (30-min relay) — well within the 2M free monthly limit."
     },
     {
       "name": "Azure Container Apps",
@@ -226,7 +226,7 @@
       "sources": [
         { "url": "https://learn.microsoft.com/en-us/azure/container-apps/billing", "checked_on": "2026-04-16", "content": "Free tier: 180,000 vCPU-seconds, 360,000 GiB-seconds, 2M HTTP requests per subscription per calendar month. No time limit — resets monthly." }
       ],
-      "notes": "az CLI not installed on the deployment machine. Free tier is identical in volume to Google Cloud Run. CC required to create Azure account."
+      "notes": "Free tier is identical in volume to Google Cloud Run. CC required to create Azure account."
     },
     {
       "name": "Replit",
