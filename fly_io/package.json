@@ -1,9 +1,0 @@
-{
-  "name": "remote-mcp-server-fly-io",
-  "version": "1.0.0",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "start": "node index.js"
-  }
-}
