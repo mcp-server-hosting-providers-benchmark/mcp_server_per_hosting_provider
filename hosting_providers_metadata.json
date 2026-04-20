@@ -1,6 +1,12 @@
 {
   "description": "Non-latency metadata for every hosting provider evaluated in the MCP server latency benchmark. Covers providers that are in the benchmark, providers not yet added, and providers explicitly excluded. Updated manually as new providers are evaluated.",
   "as_of": "2026-04-20",
+  "benchmark_contract": {
+    "measurement": "Each pinger sends a single stateless JSON-RPC POST with method 'tools/list' and id 1, with headers 'Content-Type: application/json' and 'Accept: application/json, text/event-stream'. No prior 'initialize' call, no session id, no warm-up, no retry. The measured latency is the wall-clock time between the send and the complete response.",
+    "identical_server": "The same MCP server source code is deployed unchanged on each provider (same tools, same handlers). Latency differences reflect hosting infrastructure only, not server logic.",
+    "timeout_ms": 15000,
+    "cadence": "Every 30 minutes in relay — 12 geographic origins across 6 continents, each origin pings every 6 hours."
+  },
   "criteria_explained": {
     "sources": "List of URLs where the information about this provider was found. Each entry includes the URL, the date it was consulted (checked_on), and a short description of what was found there. The checked_on date allows readers to verify whether the information has changed since it was recorded.",
     "benchmark_status": "Whether this provider is currently measured in the benchmark ('in_benchmark'), evaluated but not yet deployed ('pending'), or excluded with a reason ('excluded').",
@@ -12,7 +18,10 @@
     "free_tier_type": "Type of free offering: 'permanent' (free forever within usage limits), 'trial' (free for a limited time or resource budget, then requires payment), 'none' (no free option).",
     "free_tier_limit": "The specific limit of the free offering, if any.",
     "agent_native_score": "Overall assessment of how well this provider fits an agent-native workflow where an agent handles deployment end-to-end without human intervention or payment.",
-    "zero_to_live_sequence": "Ordered list of steps to go from zero to a live MCP server endpoint. Each step specifies whether it requires a browser (manual) or can be done via CLI (agent-executable). This documents the real adoption cost for a developer or agent starting from scratch."
+    "zero_to_live_sequence": "Ordered list of steps to go from zero to a live MCP server endpoint. Each step specifies whether it requires a browser (manual) or can be done via CLI (agent-executable). This documents the real adoption cost for a developer or agent starting from scratch.",
+    "execution_model": "How the hosted MCP server actually runs. 'single-region' = one datacenter handles every request. 'edge-network' = requests run at the edge location nearest to each client, typically with a function origin region for serverless code. 'anycast' = the same code runs simultaneously in many datacenters worldwide, all reachable via one IP; every client hits the nearest one.",
+    "deployment_region": "City + country of the datacenter that actually executes the MCP server code for this deployment. Set to null when execution_model is 'anycast' or 'edge-network' without a single origin. For 'edge-network' with a declared function origin, this is that origin region.",
+    "internal_name": "Optional override for the internal key used in mcp_servers_under_test.json (the file listing the live MCP endpoints pinged by the benchmark). Set when the display name does not match the key, for example 'Val Town' is stored as 'valtown'. When present, the publisher uses this value to match measurement records to metadata."
   },
   "providers": [
     {
@@ -21,6 +30,9 @@
       "no_credit_card": true,
       "agent_deployable_100pct": true,
       "benchmark_status": "in_benchmark",
+      "execution_model": "anycast",
+      "deployment_region": null,
+      "region_source": "Cloudflare Workers docs — Workers run at every Cloudflare data center simultaneously via anycast. There is no single deployment region.",
       "credit_card_required": "no",
       "agent_native_deployment": "yes",
       "deployment_cli": "wrangler (via npx, no global install required)",
@@ -43,6 +55,9 @@
       "no_credit_card": true,
       "agent_deployable_100pct": true,
       "benchmark_status": "in_benchmark",
+      "execution_model": "edge-network",
+      "deployment_region": "London, United Kingdom",
+      "region_source": "Response header x-vercel-id on 2026-04-20 had the form 'cdg1::lhr1::<request_id>'. Vercel documents this header as '<edge_pop>::<function_region>::<request_id>'. The function region lhr1 is Vercel's London region, which is the serverless origin for this deployment. Edge routing fans out globally in front of that origin.",
       "credit_card_required": "no",
       "agent_native_deployment": "yes",
       "deployment_cli": "vercel",
@@ -66,6 +81,9 @@
       "no_credit_card": true,
       "agent_deployable_100pct": true,
       "benchmark_status": "in_benchmark",
+      "execution_model": "edge-network",
+      "deployment_region": "Ashburn, United States",
+      "region_source": "Netlify Functions run on AWS Lambda and default to the us-east-1 region (Northern Virginia, Ashburn) unless a region is explicitly configured in netlify.toml. The deployment used in this benchmark does not override the default. Netlify's CDN edge then fans out globally in front of that origin.",
       "credit_card_required": "no",
       "agent_native_deployment": "yes",
       "deployment_cli": "netlify",
@@ -90,6 +108,9 @@
       "no_credit_card": false,
       "agent_deployable_100pct": true,
       "benchmark_status": "in_benchmark",
+      "execution_model": "single-region",
+      "deployment_region": "Eemshaven, Netherlands",
+      "region_source": "Response header x-railway-edge on 2026-04-20 was 'railway/europe-west4-drams3a'. europe-west4 is the Google Cloud Platform region in Eemshaven, Netherlands, which Railway uses for this deployment. Railway does front the container with a Fastly POP for TLS termination (x-served-by header), but the container itself runs in a single region.",
       "credit_card_required": "unknown — not verified",
       "agent_native_deployment": "yes",
       "deployment_cli": "railway",
@@ -116,6 +137,9 @@
       "no_credit_card": false,
       "agent_deployable_100pct": true,
       "benchmark_status": "in_benchmark",
+      "execution_model": "edge-network",
+      "deployment_region": null,
+      "region_source": "Supabase Edge Functions run on Deno Deploy. Deno Deploy is a global edge runtime: each request executes in the data center nearest to the client. Response header x-sb-edge-region on 2026-04-20 reflected the edge that served the request, not a fixed deployment region. The Supabase project region (us-east-1 Virginia, from 'supabase projects list') is where the project's database lives, not where Edge Functions execute.",
       "credit_card_required": "unknown — not verified",
       "agent_native_deployment": "yes",
       "deployment_cli": "supabase",
@@ -143,6 +167,9 @@
       "no_credit_card": true,
       "agent_deployable_100pct": true,
       "benchmark_status": "in_benchmark",
+      "execution_model": "single-region",
+      "deployment_region": "Ashburn, United States",
+      "region_source": "Fermyon Cloud (the free-tier hosting platform used here) currently offers a single deployment region in Northern Virginia (Ashburn). All applications on Fermyon Cloud run from that region.",
       "credit_card_required": "no — Starter tier is free and requires no credit card, only a GitHub account",
       "agent_native_deployment": "yes",
       "deployment_cli": "spin",
@@ -164,10 +191,14 @@
     },
     {
       "name": "Val Town",
+      "internal_name": "valtown",
       "free_usage_permanent": true,
       "no_credit_card": true,
       "agent_deployable_100pct": false,
       "benchmark_status": "in_benchmark",
+      "execution_model": "edge-network",
+      "deployment_region": null,
+      "region_source": "On 2026-04-20 the response for the val.run endpoint returned rndr-id and x-render-origin-server: Render, with Cloudflare in front (cf-ray). This indicates the request was served through Cloudflare's edge with a Render-backed origin. Val Town does not expose a region control to end users, so no single deployment region is declared by the platform.",
       "credit_card_required": "no",
       "agent_native_deployment": "no",
       "deployment_cli": "none — web editor only",
@@ -188,6 +219,9 @@
       "no_credit_card": true,
       "agent_deployable_100pct": false,
       "benchmark_status": "in_benchmark",
+      "execution_model": "single-region",
+      "deployment_region": null,
+      "region_source": "Render requires a single region to be chosen at service creation. The Render response headers do not expose the region (only rndr-id and x-render-origin-server: Render, with Cloudflare in front). The Render CLI requires interactive browser login and could not be queried non-interactively on 2026-04-20. The deployment region for this service needs to be confirmed from the Render dashboard.",
       "credit_card_required": "no",
       "agent_native_deployment": "partial",
       "deployment_cli": "none — deploys via GitHub repo connection",
@@ -253,7 +287,8 @@
       "free_usage_permanent": true,
       "no_credit_card": false,
       "agent_deployable_100pct": true,
-      "benchmark_status": "in_benchmark",
+      "benchmark_status": "pending",
+      "exclusion_reason": null,
       "credit_card_required": "yes — Azure always requires a credit card or debit card to create an account, even for the free tier",
       "agent_native_deployment": "yes",
       "deployment_cli": "az",
@@ -263,7 +298,7 @@
       "sources": [
         { "url": "https://learn.microsoft.com/en-us/azure/container-apps/billing", "checked_on": "2026-04-16", "content": "Free tier: 180,000 vCPU-seconds, 360,000 GiB-seconds, 2M HTTP requests per subscription per calendar month. No time limit — resets monthly." }
       ],
-      "notes": "Free tier is identical in volume to Google Cloud Run. CC required to create Azure account."
+      "notes": "Free tier is identical in volume to Google Cloud Run. CC required to create Azure account. Status is 'pending': Azure Container Apps has been evaluated on paper (free tier viable, CLI deployable) but no MCP server has been deployed to it yet, so it is not in the live latency measurement loop."
     },
     {
       "name": "Replit",
