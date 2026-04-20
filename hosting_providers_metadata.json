@@ -303,7 +303,7 @@
         { "url": "https://github.com/alpic-ai/apps-sdk-template", "checked_on": "2026-04-16", "content": "Official Alpic MCP server template — uses skybridge framework and alpic deploy CLI" },
         { "url": "https://developers.openai.com/apps-sdk/deploy", "checked_on": "2026-04-16", "content": "OpenAI MCP deployment guide — recommends Alpic as a hosting provider" }
       ],
-      "notes": "Alpic uses its own CLI (alpic deploy) and supports Python MCP servers through uv projects and explicit streamable HTTP transport. The coding agent deployed the server end to end from the terminal on 2026-04-20. No credit card was requested during account login, project creation, or deployment. The free plan is documented by Alpic as $0 per month, 10,000 requests per month, and 7-day analytics retention. Public MCP endpoint: https://remote-mcp-server-al-150a180d.alpic.live/mcp"
+      "notes": "Alpic uses its own CLI (alpic deploy) and supports Node MCP servers through npm projects and explicit streamable HTTP transport. The coding agent deployed the server end to end from the terminal on 2026-04-20. No credit card was requested during account login, project creation, or deployment. The free plan is documented by Alpic as $0 per month, 10,000 requests per month, and 7-day analytics retention. Public MCP endpoint: https://remote-mcp-server-al-739c3a1d.alpic.live/mcp. Runtime caveat observed on 2026-04-20: Alpic acts as an MCP gateway and requires the standard initialize/session flow before tools/list; direct stateless tools/list requests are rejected."
     },
     {
       "name": "Cerebrium",

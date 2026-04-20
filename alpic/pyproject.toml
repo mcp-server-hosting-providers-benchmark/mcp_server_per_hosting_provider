@@ -1,9 +1,0 @@
-[project]
-name = "remote_mcp_server_alpic"
-version = "1.0.0"
-description = "MCP server used to benchmark the Alpic hosting provider."
-requires-python = ">=3.11"
-dependencies = [
-  "mcp",
-]
-
